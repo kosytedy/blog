@@ -1,4 +1,4 @@
-package com.kosytedy.tradebot.model;
+package com.kosytedy.blog.model;
 
 import java.time.LocalDateTime;
 
@@ -19,26 +19,26 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@NotBlank
+	@Column(nullable=false)
 	private String firstname;
 	
-	@NotBlank
+	@Column(nullable=false)
 	private String lastname;
 	
-	@NotBlank
+	@Column(nullable=false)
 	private String username;
 	
-	@NotBlank
+	@Column(nullable=false)
 	private String email;
 	
-	@NotBlank
+	@Column(nullable=false)
 	private String password;
 	
-	@Column(name="created_at", updatable=false)
+	@Column(name="created_at", updatable=false, nullable=false)
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 	
-	@Column(name="updated_at")
+	@Column(name="updated_at", nullable=false)
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 
