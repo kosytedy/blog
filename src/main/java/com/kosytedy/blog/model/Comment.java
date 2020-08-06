@@ -14,7 +14,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-public class Post {
+public class Comment {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -24,7 +24,11 @@ public class Post {
 	@JoinColumn(name="user_id", nullable=false)
 	private User user;
 	
-	@Column(nullable=false)
+	@ManyToOne
+	@JoinColumn(name="post_id", nullable=false)
+	private Post post;
+	
+	@Column
 	private String content;
 	
 	@Column(name="created_at", updatable=false, nullable=false)
@@ -35,16 +39,17 @@ public class Post {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 
-	public Post(int id, User user, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
+	public Comment(int id, User user, Post post, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.id = id;
 		this.user = user;
+		this.post = post;
 		this.content = content;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
 
-	public Post() {
+	public Comment() {
 		super();
 	}
 
@@ -62,6 +67,14 @@ public class Post {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
 	}
 
 	public String getContent() {
@@ -90,9 +103,8 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", user=" + user + ", content=" + content + ", createdAt=" + createdAt
-				+ ", updatedAt=" + updatedAt + "]";
+		return "Comment [id=" + id + ", user=" + user + ", post=" + post + ", content=" + content + ", createdAt="
+				+ createdAt + ", updatedAt=" + updatedAt + "]";
 	}
-	
 	
 }
