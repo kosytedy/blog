@@ -14,13 +14,15 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@Column(nullable=false)
 	private String firstname;
@@ -45,11 +47,12 @@ public class User {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Post> posts;
 
 	
-	public User(int id, @NotBlank String firstname, @NotBlank String lastname, @NotBlank String username,
+	public User(Long id, @NotBlank String firstname, @NotBlank String lastname, @NotBlank String username,
 			@NotBlank String email, @NotBlank String password, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.id = id;
@@ -66,11 +69,11 @@ public class User {
 		super();
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
