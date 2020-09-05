@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.kosytedy.blog.exception.ResourceNotFoundException;
 import com.kosytedy.blog.model.Post;
@@ -12,6 +13,7 @@ import com.kosytedy.blog.repository.PostRepository;
 
 import net.minidev.json.JSONObject;
 
+@Service
 public class PostService {
 
 	@Autowired
@@ -26,11 +28,11 @@ public class PostService {
 				.orElseThrow(() -> new ResourceNotFoundException(postId)));
 	}
 	
-	public Post updatePost(Post post) {
+	public Post savePost(Post post) {
 		return postRepository.save(post);
 	}
 	
-	public ResponseEntity<?> deleteUser(Long postId){
+	public ResponseEntity<?> deletePost(Long postId){
 		
 		if(postRepository.existsById(postId)) {
 			JSONObject body = new JSONObject();

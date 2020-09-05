@@ -18,7 +18,7 @@ public class Comment {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id", nullable=false)
@@ -39,7 +39,7 @@ public class Comment {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 
-	public Comment(int id, User user, Post post, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
+	public Comment(Long id, User user, Post post, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -53,11 +53,11 @@ public class Comment {
 		super();
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

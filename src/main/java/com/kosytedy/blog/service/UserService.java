@@ -32,7 +32,7 @@ public class UserService {
 		return userRepository.findByUsername(username);
 	}
 	
-	public User updateUser(User user){
+	public User saveUser(User user){
 		return userRepository.save(user);
 	}
 	
