@@ -37,9 +37,16 @@ public class UserService {
 	}
 	
 	public ResponseEntity<?> deleteUser(Long userId){
-		userRepository.deleteById(userId);
+		
 		JSONObject body = new JSONObject();
-		body.put("message", "User deleted successfully.");
+		
+		if(userRepository.existsById(userId)) {
+			userRepository.deleteById(userId);
+			body.put("message", "User deleted successfully.");
+			return ResponseEntity.ok(body);
+		}
+		
+		body.put("message", "User with id "+ userId +" not found.");
 		return ResponseEntity.ok(body);
 	}
 }
