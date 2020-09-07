@@ -23,7 +23,7 @@ public class CommentService {
 		return commentRepository.findAll();
 	}
 	
-	public Optional<Comment> getUser(Long commentId){
+	public Optional<Comment> getComment(Long commentId){
 		return Optional.of(commentRepository.findById(commentId))
 				.orElseThrow(() -> new ResourceNotFoundException(commentId));
 	}

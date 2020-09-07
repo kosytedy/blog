@@ -1,6 +1,7 @@
 package com.kosytedy.blog.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 
 
 @Entity
@@ -24,6 +27,10 @@ public class Post {
 	@ManyToOne
 	@JoinColumn(name="user_id", nullable=false)
 	private User user;
+	
+	
+	@OneToMany(mappedBy="post")
+	private List<Comment> comments;
 	
 	@Column(nullable=false)
 	private String content;
@@ -63,6 +70,14 @@ public class Post {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComment(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	public String getContent() {

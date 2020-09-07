@@ -133,8 +133,6 @@ public class User {
 		this.updatedAt = updatedAt;
 	}
 
-	
-
 	public List<Post> getPosts() {
 		return posts;
 	}
