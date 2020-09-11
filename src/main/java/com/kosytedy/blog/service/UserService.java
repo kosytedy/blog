@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kosytedy.blog.exception.ResourceNotFoundException;
@@ -16,6 +17,9 @@ import net.minidev.json.JSONObject;
 @Service
 public class UserService {
 
+	@Autowired
+	private PasswordEncoder bcryptEncoder;
+	
 	@Autowired
 	UserRepository userRepository;
 	
@@ -33,6 +37,9 @@ public class UserService {
 	}
 	
 	public User saveUser(User user){
+		if(!userRepository.existsById(user.getId())) {
+			user.setPassword(bcryptEncoder.encode(user.getPassword()));
+		}
 		return userRepository.save(user);
 	}
 	
