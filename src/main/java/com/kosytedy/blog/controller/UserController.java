@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +35,11 @@ public class UserController {
 	@GetMapping("/{userId}")
 	public Optional<User> getUser(@PathVariable(name="userId") Long userId){
 		return userService.getUser(userId);
+	}
+	
+	@GetMapping("/username")
+	public Object getLoggedInUser(Authentication authentication){
+		return authentication.getName();
 	}
 	
 	// get a user by username

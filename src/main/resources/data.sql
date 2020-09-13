@@ -13,7 +13,7 @@ insert into USER (
     'Okafor', 
     'teddy', 
     'kosytedy@yahoo.com', 
-    'batista', 
+    '$2a$10$P8reLgoy9fAUH2T9.xq6CeYXzsT1l1I/l1UP1t0TEqLiWGvS1wr8K', 
     '2020-08-05 19:20:00', 
     '2020-08-05 19:20:00'
 );
