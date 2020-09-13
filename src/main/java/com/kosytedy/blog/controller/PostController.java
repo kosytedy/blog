@@ -35,7 +35,7 @@ public class PostController {
 		return postService.getPost(postId);
 	}
 	
-	@GetMapping
+	@GetMapping("/search")
 	public List<Post> searchPost(@RequestParam(name="q") String text){
 		return postService.searchPost(text); 
 	}

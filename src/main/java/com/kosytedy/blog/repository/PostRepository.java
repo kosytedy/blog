@@ -11,6 +11,6 @@ import com.kosytedy.blog.model.Post;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-	@Query("SELECT * FROM post p WHERE p.content LIKE %?1%")
+	@Query(value = "SELECT * FROM Post p WHERE p.content LIKE %:text%", nativeQuery = true)
 	List<Post> searchPost(String text);
 }
