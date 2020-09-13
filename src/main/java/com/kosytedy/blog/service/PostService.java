@@ -45,6 +45,6 @@ public class PostService {
 	}
 	
 	public List<Post> searchPost(String text){
-		return postRepository.searchPost(text);
+		return postRepository.searchPost(text); 
 	}
 }
