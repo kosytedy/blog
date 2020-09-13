@@ -37,7 +37,7 @@ public class PostController {
 	
 	@GetMapping
 	public List<Post> searchPost(@RequestParam(name="q") String text){
-		return postService.searchPost(text);
+		return postService.searchPost(text); 
 	}
 	
 	@PostMapping("/create")
