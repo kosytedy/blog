@@ -43,4 +43,8 @@ public class PostService {
 		
 		throw new ResourceNotFoundException(postId);
 	}
+	
+	public List<Post> searchPost(String text){
+		return postRepository.searchPost(text);
+	}
 }

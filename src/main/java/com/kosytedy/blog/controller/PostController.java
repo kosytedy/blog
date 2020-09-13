@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kosytedy.blog.model.Post;
@@ -32,6 +33,11 @@ public class PostController {
 	@GetMapping("/{postId}")
 	public Optional<Post> getPost(@PathVariable(name="postId") Long postId) {
 		return postService.getPost(postId);
+	}
+	
+	@GetMapping
+	public List<Post> searchPost(@RequestParam(name="q") String text){
+		return postService.searchPost(text);
 	}
 	
 	@PostMapping("/create")
