@@ -28,12 +28,14 @@ public class Post {
 	@JoinColumn(name="user_id", nullable=false)
 	private User user;
 	
-	
 	@OneToMany(mappedBy="post")
 	private List<Comment> comments;
 	
 	@Column(nullable=false)
 	private String content;
+	
+	@Column(nullable=false)
+	private String title;
 	
 	@Column(name="created_at", updatable=false, nullable=false)
 	@CreationTimestamp
@@ -43,11 +45,12 @@ public class Post {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 
-	public Post(Long id, User user, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
+	public Post(Long id, User user, String content, String title, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.content = content;
+		this.title = title;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
@@ -88,6 +91,14 @@ public class Post {
 		this.content = content;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
@@ -106,7 +117,7 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", user=" + user + ", content=" + content + ", createdAt=" + createdAt
+		return "Post [id=" + id + ", user=" + user + ", content=" + content + ", title=\" + title + \", createdAt=" + createdAt
 				+ ", updatedAt=" + updatedAt + "]";
 	}
 	
