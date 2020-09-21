@@ -36,6 +36,11 @@ public class UserService {
 		return userRepository.findByUsername(username);
 	}
 	
+	public User createUser(User user){
+		user.setPassword(bcryptEncoder.encode(user.getPassword()));
+		return userRepository.save(user);
+	}
+	
 	public User saveUser(User user){
 		if(!userRepository.existsById(user.getId())) {
 			user.setPassword(bcryptEncoder.encode(user.getPassword()));

@@ -30,12 +30,12 @@ public class Post {
 	
 	@OneToMany(mappedBy="post")
 	private List<Comment> comments;
+
+	@Column(nullable=false)
+	private String title;
 	
 	@Column(nullable=false)
 	private String content;
-	
-	@Column(nullable=false)
-	private String title;
 	
 	@Column(name="created_at", updatable=false, nullable=false)
 	@CreationTimestamp

@@ -51,7 +51,7 @@ public class AuthenticationController {
 
 	@PostMapping(value = "/register")
 	public ResponseEntity<?> saveUser(@RequestBody User user) throws Exception {
-		return ResponseEntity.ok(userService.saveUser(user));
+		return ResponseEntity.ok(userService.createUser(user));
 	}
 
 	private void authenticate(String username, String password) throws Exception {
