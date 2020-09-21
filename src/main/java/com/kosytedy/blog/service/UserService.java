@@ -42,9 +42,6 @@ public class UserService {
 	}
 	
 	public User saveUser(User user){
-		if(!userRepository.existsById(user.getId())) {
-			user.setPassword(bcryptEncoder.encode(user.getPassword()));
-		}
 		return userRepository.save(user);
 	}
 	
